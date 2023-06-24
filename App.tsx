@@ -31,8 +31,9 @@ type Address = {
 
 const getAdress = (user: any) => {
   const address: Address = user.addresses[0];
-  const check = key => (address[key] ? `${address[key] + ', '}` : '');
-  return `${check('area')} ${check('city')} ${check('countryCode')}`;
+  const check = (key, last) =>
+    address[key] ? `${address[key] + !last ? ', ' : ''}` : '';
+  return `${check('area')} ${check('city')} ${check('countryCode', true)}`;
 };
 
 const App = () => {
